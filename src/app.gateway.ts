@@ -40,7 +40,7 @@ export class AppGateway
                     return;
                 }
                 console.log(value);
-                gateWay && gateWay.handleIrValueChange(++value);
+                gateWay && gateWay.handleIrValueChange(value);
             });
         } catch (e) {
             console.log('fail to init gpio', e);
