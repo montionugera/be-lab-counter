@@ -61,7 +61,7 @@ export class AppGateway
             server.emit('message', 'pass');
             gateWay.ticker = setTimeout(() => {
                 loopTicker();
-            }, 3000);
+            }, 5000);
         }
         loopTicker();
     }
