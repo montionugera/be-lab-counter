@@ -22,6 +22,7 @@ export class AppGateway
     implements OnGatewayInit, OnGatewayConnection, OnGatewayDisconnect
 {
     ticker: Timeout;
+    lastIrValue: number;
     @WebSocketServer() server: Server;
     private logger: Logger = new Logger('AppGateway');
 
@@ -55,26 +56,21 @@ export class AppGateway
     }
 
     handleIrValueChange(value: number) {
-        this.server.emit('message', `ir-${value}`);
+        if (this.lastIrValue === 0 && value === 1) {
+            this.server.emit('message', `ir-${value}`);
+        }
+        this.lastIrValue = value;
     }
 }
 try {
-    const LED = new Gpio(2, 'out');
-    const irSensor = new Gpio(23, 'in', 'both');
+    const irSensor = new Gpio(14, 'in', 'both');
     irSensor.watch(function (err, value) {
-        //Watch for hardware interrupts on pushButton GPIO, specify callback function
         if (err) {
-            //if an error
-            console.error('There was an error', err); //output error message to console
+            console.error('There was an error', err);
             return;
         }
         console.log(value);
-        if (++value == 1) {
-            gateWay && gateWay.handleIrValueChange(++value);
-            LED.writeSync(1);
-        } else {
-            LED.writeSync(0);
-        }
+        gateWay && gateWay.handleIrValueChange(++value);
     });
 } catch (e) {
     console.log('fail to init gpio', e);
