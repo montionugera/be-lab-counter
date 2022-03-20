@@ -38,7 +38,7 @@ export class AppGateway
         const [logger, server] = [this.logger, this.server];
         function loopTicker() {
             logger.log(`ticker :`, client.id);
-
+            server.emit('message', 'BLA BLA 🤗');
             setTimeout(() => {
                 loopTicker();
             }, 1500);
