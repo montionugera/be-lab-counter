@@ -11,8 +11,6 @@ import { Server, Socket } from 'socket.io';
 import { Gpio } from 'onoff';
 import Timeout = NodeJS.Timeout;
 
-let gateWay: AppGateway = null;
-
 @WebSocketGateway({
     cors: {
         origin: '*',
@@ -33,7 +31,20 @@ export class AppGateway
 
     afterInit(server: Server) {
         this.logger.log('Init');
-        gateWay = this;
+        const gateWay = this;
+        try {
+            const irSensor = new Gpio(14, 'in', 'both');
+            irSensor.watch(function (err, value) {
+                if (err) {
+                    console.error('There was an error', err);
+                    return;
+                }
+                console.log(value);
+                gateWay && gateWay.handleIrValueChange(++value);
+            });
+        } catch (e) {
+            console.log('fail to init gpio', e);
+        }
     }
 
     handleDisconnect(client: Socket) {
@@ -61,17 +72,4 @@ export class AppGateway
         }
         this.lastIrValue = value;
     }
-}
-try {
-    const irSensor = new Gpio(14, 'in', 'both');
-    irSensor.watch(function (err, value) {
-        if (err) {
-            console.error('There was an error', err);
-            return;
-        }
-        console.log(value);
-        gateWay && gateWay.handleIrValueChange(++value);
-    });
-} catch (e) {
-    console.log('fail to init gpio', e);
 }
