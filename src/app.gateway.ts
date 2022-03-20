@@ -67,7 +67,9 @@ export class AppGateway
     }
 
     handleIrValueChange(value: number) {
+        this.logger.log(`handleIrValueChange: ${value}`);
         if (this.lastIrValue === 0 && value === 1) {
+            this.logger.log(`emit: ir-${value}`);
             this.server.emit('message', `ir-${value}`);
         }
         this.lastIrValue = value;
