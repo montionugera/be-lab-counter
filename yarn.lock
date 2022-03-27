@@ -4548,6 +4548,11 @@ path-type@^4.0.0:
   resolved "https://registry.yarnpkg.com/path-type/-/path-type-4.0.0.tgz#84ed01c0a7ba380afe09d90a8c180dcd9d03043b"
   integrity sha512-gDKb8aZMDeD/tZWs9P6+q0J9Mwkdl6xMV8TjnGP3qJVJ06bdMgkbBlLU8IdfOsIsFz2BW1rNVT3XuNEl8zPAvw==
 
+pi-camera@^1.7.0:
+  version "1.7.0"
+  resolved "https://registry.yarnpkg.com/pi-camera/-/pi-camera-1.7.0.tgz#b9309f48c187eb89bdde4dde6989a6438481d5a5"
+  integrity sha512-96LdjJeh/1sZKYdBugURUnhoTdIUu5u8oDbVW2EFtxiGpz6Vs4nATmQHY4jibopZNfDhH9He9j0iDmS6w0L2/Q==
+
 picocolors@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/picocolors/-/picocolors-1.0.0.tgz#cb5bdc74ff3f51892236eaf79d68bc44564ab81c"

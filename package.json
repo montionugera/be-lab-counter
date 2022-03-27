@@ -27,6 +27,7 @@
     "@nestjs/platform-socket.io": "^8.4.1",
     "@nestjs/websockets": "^8.4.1",
     "onoff": "^6.0.3",
+    "pi-camera": "^1.7.0",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
     "rxjs": "^6.6.3"
